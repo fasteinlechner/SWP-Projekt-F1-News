@@ -9,5 +9,13 @@ namespace F1_News.Controllers {
         public IActionResult Index() {
             return View();
         }
+
+        public IActionResult AboutUs() {
+            return View();
+        }
+        public IActionResult News() {
+            return View();
+        }
+
     }
 }
