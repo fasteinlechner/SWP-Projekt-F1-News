@@ -7,16 +7,14 @@
     min-width: 640px;
     margin: 0px auto;
 }
-
 #social{
     text-align: right;
 }
 
 main {
-
     background-color: white;
     width: 100%;
-    height: 500px;
+    height: 800px;
     min-width: 340px;
     min-height: 520px;
     padding: 12p 20p 12p 12p;
@@ -50,7 +48,6 @@ nav {
     margin-right: 30px;
 }
 
-
 /*social media buttons*/
 
 .fa {
@@ -83,11 +80,12 @@ nav {
 /*News*/
 
 .discusBox {
-    border: #333 solid 1px;
+    margin-left: 20px;
+    border-radius: 40px 20px;
     height: 120px;
     width: 720px;
     position: relative;
-    background-color: #808080;
+    background-color: lightgrey;
 }
 
 .discusTitle {
@@ -147,10 +145,12 @@ nav {
 }
 
 .discusLink {
+    margin-right: 18px;
     float: right;
-    background-color: #2fb7e0;
+    background-color: #ff0000;
     width: 120px;
     text-align: center;
+    border-radius: 40px 20px;
 }
 
     .discusLink a {
@@ -158,6 +158,28 @@ nav {
         text-decoration: none;
         display: block;
     }
+
+/*Startseite*/
+.welcomeBox {
+    padding: 12px 12px 12px 12px;
+    border-radius: 40px 20px;
+    height: 200px;
+    width: 720px;
+    position: relative;
+    background-color: lightgrey;
+}
+
+.imageBox {
+    padding: 12px 12px 12px 12px;
+    border-radius: 40px 20px;
+    height: 300px;
+    width: 720px;
+    position: relative;
+    background-color: lightgrey;
+    background-image: url(https://www.tvmovie.de/bilder/758/2020/11/10/79558-formel-1-saison-2020.jpg?itok=NvXbtWKI);
+}
+
+
 
 
 
