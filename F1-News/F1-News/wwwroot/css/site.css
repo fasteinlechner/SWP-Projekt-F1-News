@@ -19,6 +19,7 @@ main {
     height: 500px;
     min-width: 340px;
     min-height: 520px;
+    padding: 12p 20p 12p 12p;
 
 }
 
@@ -30,8 +31,8 @@ header {
 footer {
     background-color: darkgray;
     height: 100px;
-    text-align: right;
-    padding: 12px 20px 0px 0px;
+    text-align: left;
+    padding: 12px 20px 12px 12px;
 
 }
 
@@ -50,14 +51,14 @@ nav {
 }
 
 
-// social media buttons
+/*social media buttons*/
 
 .fa {
     padding: 20px;
-    font-size: 30px;
+    font-size: 45px;
     width: 50px;
-    text-align: center;
-    text-decoration: none;
+    text-align: right;
+    text-decoration: auto;
 }
 
 
@@ -67,17 +68,96 @@ nav {
 
 /* Set a specific color for each brand */
 
-/* Facebook */
-.fa-facebook {
-    background: #3B5998;
-    color: white;
-}
-
 /* Twitter */
 .fa-twitter {
     background: #55ACEE;
     color: white;
 }
+
+/*Instagram*/
+.fa-instagram {
+    background: #125688;
+    color: white;
+}
+
+/*News*/
+
+.discusBox {
+    border: #333 solid 1px;
+    height: 120px;
+    width: 720px;
+    position: relative;
+    background-color: #808080;
+}
+
+.discusTitle {
+    line-height: 40px;
+    padding-left: 6px;
+    position: absolute;
+    top: 0;
+    left: 120px;
+    width: 600px;
+    vertical-align: middle;
+}
+
+    .discusTitle h3 {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+.discusBrief {
+    height: 60px;
+    width: 600px;
+    position: absolute;
+    top: 40px;
+    left: 120px;
+    overflow: hidden;
+}
+
+    .discusBrief p {
+        padding-left: 6px;
+    }
+
+.discusMeta {
+    height: 20px;
+    width: 600px;
+    position: absolute;
+    top: 100px;
+    left: 120px;
+    font-size: 11px;
+    line-height: 20px;
+    vertical-align: middle;
+}
+
+.discusMetaPostedOn, .discusBy {
+    display: inline;
+    float: left;
+}
+
+.discusMetaPostedOn {
+    padding-left: 6px;
+    margin-right: 24px;
+}
+
+    .discusMetaPostedOn p {
+        margin-bottom: 0;
+    }
+
+.discusBy {
+}
+
+.discusLink {
+    float: right;
+    background-color: #2fb7e0;
+    width: 120px;
+    text-align: center;
+}
+
+    .discusLink a {
+        color: white;
+        text-decoration: none;
+        display: block;
+    }
 
 
 
