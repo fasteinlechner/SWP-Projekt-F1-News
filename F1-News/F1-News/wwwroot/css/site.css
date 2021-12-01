@@ -27,7 +27,7 @@ header {
 }
 
 footer {
-    background-color: darkgray;
+    background-color: darkslategray;
     height: 100px;
     text-align: left;
     padding: 12px 20px 12px 12px;
@@ -81,6 +81,15 @@ nav {
 
 .discusBox {
     margin-left: 20px;
+    border-radius: 40px 20px;
+    height: 120px;
+    width: 720px;
+    position: relative;
+    background-color: lightgrey;
+}
+
+.discusBox2 {
+    margin-top: 150px;
     border-radius: 40px 20px;
     height: 120px;
     width: 720px;
@@ -161,12 +170,7 @@ nav {
 
 /*Startseite*/
 .welcomeBox {
-    padding: 12px 12px 12px 12px;
-    border-radius: 40px 20px;
-    height: 200px;
-    width: 720px;
-    position: relative;
-    background-color: lightgrey;
+    margin: 20px;
 }
 
 .imageBox {
@@ -178,6 +182,31 @@ nav {
     background-color: lightgrey;
     background-image: url(https://www.tvmovie.de/bilder/758/2020/11/10/79558-formel-1-saison-2020.jpg?itok=NvXbtWKI);
 }
+
+
+@media all and (min-width: 992px) {
+    .navbar .nav-item .dropdown-menu {
+        display: none;
+    }
+
+    .navbar .nav-item:hover .nav-link {
+    }
+
+    .navbar .nav-item:hover .dropdown-menu {
+        display: block;
+    }
+
+    .navbar .nav-item .dropdown-menu {
+        margin-top: 0;
+    }
+}
+
+
+
+
+
+
+
 
 
 

@@ -10,17 +10,18 @@
 <body>
 
     <div id="container">
-        <header>
+        <header class="row">
             <nav>
                 <partial name="Menüleiste" />
             </nav>
         </header>
-        <main>
-            <content id="back">
+        <main class="row">
+           
+            <content class="col-sm-12" id="back">
                 @RenderBody()
             </content>
         </main>
-        <footer>
+        <footer class=" bg-dark fixed-bottom">
             <a href="https://www.instagram.com/f1/?hl=de" class="fa fa-instagram"></a>
             <a href="https://twitter.com/F1?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" class="fa fa-twitter"></a>
         </footer>
