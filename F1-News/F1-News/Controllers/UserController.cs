@@ -9,5 +9,15 @@ namespace F1_News.Controllers {
         public IActionResult Index() {
             return View();
         }
+
+        [HttpGet]
+        public IActionResult Registration() {
+            return View();
+        }
+
+       // [HttpPost]
+       /* public IActionResult Registration(User userDataFromForm) {
+
+        }*/
     }
 }
