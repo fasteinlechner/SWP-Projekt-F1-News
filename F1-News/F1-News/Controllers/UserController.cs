@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using F1_News.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +16,9 @@ namespace F1_News.Controllers {
             return View();
         }
 
-       // [HttpPost]
-       /* public IActionResult Registration(User userDataFromForm) {
-
-        }*/
+       [HttpPost]
+        public IActionResult Registration(User userDataFromForm) {
+            return View();
+        }
     }
 }

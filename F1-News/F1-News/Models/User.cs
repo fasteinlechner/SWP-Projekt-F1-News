@@ -22,6 +22,7 @@ namespace F1_News.Models {
         public string Lastname { get; set; }
         public string Email { get; set; }
         public string Birthdate { get; set; }
+        public Gender Gender { get; set; }
        
     }
 }
