@@ -18,7 +18,27 @@ namespace F1_News.Controllers {
 
        [HttpPost]
         public IActionResult Registration(User userDataFromForm) {
-            return View();
+           
+            if (userDataFromForm == null) {
+                return RedirectToAction("Registration");
+            }
+            ValidateRegistrationData(userDataFromForm);
+            if (ModelState.IsValid) {
+                return RedirectToAction("Index");
+            }
+            return View(userDataFromForm);
+            
+        }
+
+        private void ValidateRegistrationData(User user) {
+            if (user== null) {
+                return;
+            }
+           
+            if(user.Username==null || user.Username.Trim().Length < 4) {
+                ModelState.AddModelError("Username", "Der Username muss mind. 4 Zeichen lang sein");
+            }
+
         }
     }
 }
