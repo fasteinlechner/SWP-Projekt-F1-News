@@ -1,0 +1,40 @@
+﻿@model F1_News.Models.User
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <h1>Login</h1>
+        <hr />
+        <form asp-controller="user" asp-action="login" method="post">
+
+            <div class="row">
+
+                <div class="col">
+                    <h2>Anmeldedaten</h2>
+                    <hr />
+
+                    <div class="form-group">
+                        <label asp-for="Username"><h4>Benutzername</h4></label><br />
+                        <input type="text" asp-for="Username" placeholder="Benutzername" />
+                        <span asp-validation-for="Username"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password"><h4>Passwort</h4></label><br />
+                        <input type="password" asp-for="Password" placeholder="Passwort" />
+                        <span asp-validation-for="Password"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="absenden" />
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <div class="col-md-1"></div>
+</div>
+
