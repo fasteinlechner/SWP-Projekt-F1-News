@@ -51,24 +51,24 @@ namespace F1_News.Controllers {
                 ModelState.AddModelError("Password", "Das Passwort muss mindestens 8 Zeichen lang sein!");
             }
 
-            //Gender
-            if (user.Gender.Equals(null))
-            {
-                ModelState.AddModelError("Gender", "Sie müssen ein Geschlecht angeben!");
-            }
-
             //Birthdate
             if (user.Birthdate > DateTime.Now)
             {
                 ModelState.AddModelError("Birthdate", "Das Geburtsdatum darf nicht in der Zukunft sein!");
             }
 
-            /*EMail
-            if (!user.Email.Contains("@"))
+            //EMail
+            if (user.Email != null)
             {
-                ModelState.AddModelError("EMail", "Geben Sie eine gültige E-Mail-Adresse an!");
-            }*/
-
+                if (!user.Email.Contains("@"))
+                {
+                    ModelState.AddModelError("EMail", "Geben Sie eine gültige E-Mail-Adresse an!");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("EMail", "Geben Sie eine E-Mail-Adresse an!");
+            }
         }
 
         [HttpPost]

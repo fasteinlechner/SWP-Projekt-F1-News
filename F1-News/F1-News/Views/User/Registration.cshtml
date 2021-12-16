@@ -17,17 +17,17 @@
                     <hr />
                    
                     <div class="form-group">
-                        <label asp-for="Username"><h4>Benutzername</h4></label><br />
+                        <label asp-for="Username"><h4>Benutzername*</h4></label><br />
                         <input type="text" asp-for="Username" placeholder="Benutzername"/>
                         <span asp-validation-for="Username"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="Password"><h4>Passwort</h4></label><br />
+                        <label asp-for="Password"><h4>Passwort*</h4></label><br />
                         <input type="password" asp-for="Password" placeholder="Passwort" />
                         <span asp-validation-for="Password"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="Email"><h4>Email</h4></label><br />
+                        <label asp-for="Email"><h4>E-Mail*</h4></label><br />
                         <input type="email" asp-for="Email" placeholder="Email" />
                         <span asp-validation-for="Email"></span>
                     </div>
@@ -49,7 +49,7 @@
                                 <span asp-validation-for="Lastname"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="Birthdate"><h4>Geburtsdatum</h4></label><br />
+                                <label asp-for="Birthdate"><h4>Geburtsdatum*</h4></label><br />
                                 <input type="date" asp-for="Birthdate" placeholder="Geburtsdatum" />
                                 <span asp-validation-for="Birthdate"></span>
                             </div>

@@ -5,6 +5,6 @@ using System.Threading.Tasks;
 
 namespace F1_News.Models {
     public enum Gender {
-        male, female, notSpeciefied
+        male, female, notSpecified
     }
 }

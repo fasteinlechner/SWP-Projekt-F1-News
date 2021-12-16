@@ -34,7 +34,7 @@ namespace F1_News.Models {
         public Gender Gender { get; set; }
 
 
-        public User() : this(0, "defaultUser", "12345678", "", "", "", DateTime.MinValue, Gender.notSpeciefied) { }
+        public User() : this(0, "defaultUser", "12345678", "", "", "", DateTime.MinValue, Gender.notSpecified) { }
         public User (int userId, string username, string password, string firstname, string lastname, string email, DateTime birth, Gender gender) {
             this.UserId = userId;
             this.Username = username;
