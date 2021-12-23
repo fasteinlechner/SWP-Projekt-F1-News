@@ -1,14 +1,101 @@
-﻿<h1>Hier können Sie sich registrieren und einloggen!</h1>
+﻿
+
+
+
+<h1>Hier können Sie sich registrieren und einloggen!</h1>
 
 <div class="container" style="padding-top: 60px">
-    <div class="row">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-4">
-            <a href="/user/registration"><font size="5"><b>Benutzer erstellen</b></font></a>
+    <div class="box">
+        <div class="anchor-container">
+            <a class="anchor-item" href="/user/registration">Benutzer erstellen</a>
         </div>
-        <div class="col-sm-4">
-            <a href="/user/Login"><font size="5"><b>Anmelden</b></font></a>
-        </div>
-        <div class="col-sm-2"></div>
+        <a href="/user/registration">
+            <div class="register first">
+               <b> Benutzer erstellen </b> 
+            </div>
+        </a>
+        <a href="/user/Login">
+            <div class=" register second">
+                <b>Anmelden</b>
+            </div>
+        </a>
     </div>
 </div>
+
+
+<style>
+
+    .anchor-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background: red;
+    }
+
+    .anchor-item {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        text-decoration: none;
+        color: white;
+        text-align: center;
+    }
+
+    .box{
+        display: grid;
+        height:100%;
+        grid-template-rows: repeat(4,1fr);
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap:20px;
+        
+    }
+
+    .first{
+        grid-row:span 2;
+        grid-column: span 3;
+    }
+    .second{
+        grid-row: span 1;
+        grid-column: span 2;
+    }
+
+
+    .register {
+        display: flex;
+        cursor: pointer;
+        background: white;
+        box-shadow: 4px 0px 10px #000000;
+        position: relative;
+        z-index:1;
+        align-content: center;
+        font-size:25px;
+        color:white;
+        
+    }
+    
+    .register::after{
+        content:"";
+        position:absolute;
+        top: 0;
+        left:0;
+        width:100%;
+        height:100%;
+        background:rgba(0,0,0,0.5);
+        z-index:-1; 
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 200ms ease-in;
+    }
+
+    .register:hover::after{
+        transform: scaleX(1);
+        transform-origin:left;
+    }
+
+
+
+
+
+
+</style>

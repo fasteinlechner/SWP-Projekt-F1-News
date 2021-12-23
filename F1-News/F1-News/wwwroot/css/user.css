@@ -1,0 +1,32 @@
+﻿
+
+
+
+
+form {
+    font-size: 18px;
+}
+
+input {
+    border-radius: 50px;
+    border: 2px solid #ff0000;
+    padding: .5rem;
+    transition: 2s background ease;
+}
+
+    input:hover {
+        background-color: red;
+        color: black;
+    }
+
+  
+select {
+    border-radius: 50px;
+    border: 2px solid #ff0000;
+    padding: .5rem;
+}
+
+label {
+    letter-spacing: 1px;
+}
+
