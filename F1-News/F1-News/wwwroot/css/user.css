@@ -23,7 +23,10 @@ input {
         background-color: red;
         color: black;
     }
-
+span{
+    color:darkred;
+    font-size:small;
+}
   
 select {
     border-radius: 50px;
