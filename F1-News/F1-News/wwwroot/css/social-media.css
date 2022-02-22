@@ -1,0 +1,28 @@
+﻿/*social media buttons*/
+
+.fa {
+    padding: 20px;
+    font-size: 45px;
+    width: 50px;
+    text-align: right;
+    text-decoration: auto;
+}
+
+
+    .fa:hover {
+        opacity: 0.7;
+    }
+
+/* Set a specific color for each brand */
+
+/* Twitter */
+.fa-twitter {
+    background: darkred;
+    color: white;
+}
+
+/*Instagram*/
+.fa-instagram {
+    background: darkred;
+    color: white;
+}

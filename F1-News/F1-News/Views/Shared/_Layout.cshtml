@@ -6,23 +6,19 @@
     <title>@ViewData["Title"] - F1_News</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/social-media.css" />
 
 </head>
 <body>
 
     <div id="container">
-        <header class="row">
-            <nav>
-                <partial name="Menüleiste" />
-            </nav>
+        <header>
+                <partial name="Menüleiste" /> 
         </header>
-        <main class="row">
-           
-            <content class="col-sm-12" id="back" style="padding-bottom: 100px; padding-top: 50px;">
+        <main>
                 @RenderBody()
-            </content>
         </main>
-        <footer class=" bg-dark">
+        <footer>
             <a href="https://www.instagram.com/f1/?hl=de" class="fa fa-instagram"></a>
             <a href="https://twitter.com/F1?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" class="fa fa-twitter"></a>
         </footer>
