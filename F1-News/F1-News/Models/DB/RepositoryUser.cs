@@ -71,17 +71,157 @@ namespace F1_News.Models.DB {
             return user;
         }
         public bool Insert(User user) {
-            throw new NotImplementedException();
+            if(this.conn?.State == ConnectionState.Open) {
+                DbCommand cmdInsert = this.conn.CreateCommand();
+                cmdInsert.CommandText = "insert into user values(null, @username, sha2(@password,512), @firstname, @lastname, @email, @birthdate, @gender);";
+
+                DbParameter username = cmdInsert.CreateParameter();
+                username.ParameterName = "username";
+                username.DbType = DbType.String;
+                username.Value = user.Username;
+
+                DbParameter password = cmdInsert.CreateParameter();
+                password.ParameterName = "password";
+                password.DbType = DbType.String;
+                password.Value = user.Password;
+
+                DbParameter firstname = cmdInsert.CreateParameter();
+                firstname.ParameterName = "firstname";
+                firstname.DbType = DbType.String;
+                firstname.Value = user.Firstname;
+
+                DbParameter lastname = cmdInsert.CreateParameter();
+                lastname.ParameterName = "lastname";
+                lastname.DbType = DbType.String;
+                lastname.Value = user.Lastname;
+
+                DbParameter email = cmdInsert.CreateParameter();
+                email.ParameterName = "email";
+                email.DbType = DbType.String;
+                email.Value = user.Email;
+
+                DbParameter birthdate = cmdInsert.CreateParameter();
+                birthdate.ParameterName = "birthdate";
+                birthdate.DbType = DbType.DateTime;
+                birthdate.Value = user.Birthdate;
+
+                DbParameter gender = cmdInsert.CreateParameter();
+                gender.ParameterName = "gender";
+                gender.DbType = DbType.Int32;
+                gender.Value = user.Gender;
+
+                cmdInsert.Parameters.Add(username);
+                cmdInsert.Parameters.Add(password);
+                cmdInsert.Parameters.Add(firstname);
+                cmdInsert.Parameters.Add(lastname);
+                cmdInsert.Parameters.Add(email);
+                cmdInsert.Parameters.Add(birthdate);
+                cmdInsert.Parameters.Add(gender);
+
+                return cmdInsert.ExecuteNonQuery() == 1;
+            }
+            return false;
         }
         public bool Update(User newUser) {
-            throw new NotImplementedException();
+            if(this.conn?.State == ConnectionState.Open) {
+                DbCommand cmdUpdate = this.conn.CreateCommand();
+                cmdUpdate.CommandText = "update user set username = @username, password = @password, firstname = @firstname, lastname = @lastname, email = @email, birthdate = @birthdate, gender = @gender where user_id = @id";
+
+                DbParameter username = cmdUpdate.CreateParameter();
+                username.ParameterName = "username";
+                username.DbType = DbType.String;
+                username.Value = newUser.Username;
+
+                DbParameter password = cmdUpdate.CreateParameter();
+                password.ParameterName = "password";
+                password.DbType = DbType.String;
+                password.Value = newUser.Password;
+
+                DbParameter firstname = cmdUpdate.CreateParameter();
+                firstname.ParameterName = "firstname";
+                firstname.DbType = DbType.String;
+                firstname.Value = newUser.Firstname;
+
+                DbParameter lastname = cmdUpdate.CreateParameter();
+                lastname.ParameterName = "lastname";
+                lastname.DbType = DbType.String;
+                lastname.Value = newUser.Lastname;
+
+                DbParameter email = cmdUpdate.CreateParameter();
+                email.ParameterName = "email";
+                email.DbType = DbType.String;
+                email.Value = newUser.Email;
+
+                DbParameter birthdate = cmdUpdate.CreateParameter();
+                birthdate.ParameterName = "birthdate";
+                birthdate.DbType = DbType.DateTime;
+                birthdate.Value = newUser.Birthdate;
+
+                DbParameter gender = cmdUpdate.CreateParameter();
+                gender.ParameterName = "gender";
+                gender.DbType = DbType.Int32;
+                gender.Value = newUser.Gender;
+
+                DbParameter id = cmdUpdate.CreateParameter();
+                id.ParameterName = "id";
+                id.DbType = DbType.Int32;
+                id.Value = newUser.UserId;
+
+                cmdUpdate.Parameters.Add(username);
+                cmdUpdate.Parameters.Add(password);
+                cmdUpdate.Parameters.Add(firstname);
+                cmdUpdate.Parameters.Add(lastname);
+                cmdUpdate.Parameters.Add(email);
+                cmdUpdate.Parameters.Add(birthdate);
+                cmdUpdate.Parameters.Add(gender);
+                cmdUpdate.Parameters.Add(id);
+
+                return cmdUpdate.ExecuteNonQuery() == 1;
+            }
+            return false;
         }
         public bool Delete(int userId) {
-            throw new NotImplementedException();
-        }
+            if(this.conn?.State == ConnectionState.Open) {
+                DbCommand cmdDelete = this.conn.CreateCommand();
+                cmdDelete.CommandText = "delete from user where user_id = @id";
 
+                DbParameter id = cmdDelete.CreateParameter();
+                id.ParameterName = "id";
+                id.DbType = DbType.Int32;
+                id.Value = userId;
+                cmdDelete.Parameters.Add(id);
+
+                return cmdDelete.ExecuteNonQuery() == 1;
+            }
+            return false;
+        }
         public bool Login(string username, string password) {
-            throw new NotImplementedException();
+            if(this.conn?.State == ConnectionState.Open) {
+                DbCommand cmdLogin = this.conn.CreateCommand();
+                cmdLogin.CommandText = "select * from user where username = @username and password = @password";
+
+                DbParameter user = cmdLogin.CreateParameter();
+                user.ParameterName = "username";
+                user.DbType = DbType.String;
+                user.Value = username;
+
+                DbParameter passw = cmdLogin.CreateParameter();
+                passw.ParameterName = "password";
+                passw.DbType = DbType.String;
+                passw.Value = password;
+
+                cmdLogin.Parameters.Add(user);
+                cmdLogin.Parameters.Add(passw);
+
+                using (DbDataReader reader = cmdLogin.ExecuteReader()) {
+                    if (reader.Read()) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+            return false;
         }
 
        

@@ -14,4 +14,4 @@ create table user(
 	constraint user_id_PK primary key (user_id)
 );
 
-insert into user values(null, "dolettenbichler", sha2("domi", 512), "Dominik", "Lettenbichler", "dolettenbichler@tsn.at", "2004-01-01", 0);
+insert into user values(null, "dolettenbichler", sha2("domi123456", 512), "Dominik", "Lettenbichler", "dolettenbichler@tsn.at", "2004-01-01", 0);

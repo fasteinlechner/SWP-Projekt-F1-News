@@ -1,12 +1,16 @@
 ﻿using F1_News.Models;
+using F1_News.Models.DB;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace F1_News.Controllers {
     public class UserController : Controller {
+
+        private IRepositoryUser rep = new RepositoryUser();
         public IActionResult Index() {
             return View();
         }
@@ -24,7 +28,18 @@ namespace F1_News.Controllers {
             }
             ValidateRegistrationData(userDataFromForm);
             if (ModelState.IsValid) {
-                return RedirectToAction("Index");
+                try {
+                    rep.Connect();
+                    if (rep.Insert(userDataFromForm)) {
+                        return View("systemMessage", new systemMessage("Registration-Control", "Sie haben sich erfolgreich registriert!"));
+                    } else {
+                        return View("systemMessage", new systemMessage("Registration-Control", "Etwas ist schiefgelaufen!"));
+                    }
+                } catch (DbException) {
+                    return View("systemMessage", new systemMessage());
+                } finally {
+                    rep.Disconnect();
+                }
             }
             return View(userDataFromForm);
             
@@ -44,7 +59,19 @@ namespace F1_News.Controllers {
             ValidateLoginData(userDataFromForm);
             if (ModelState.IsValid)
             {
-                return RedirectToAction("Index");
+                try {
+                    rep.Connect();
+                    if(rep.Login(userDataFromForm.Username, userDataFromForm.Password)) {
+                        return View("systemMessage", new systemMessage("LOGIN-Control", "Sie haben sich erfolgreich angemeldet"));
+                    } else {
+                        return View("systemMessage", new systemMessage("LOGIN-Control", "Benutzer oder Passwort falsch"));
+                    }
+                } catch (DbException) {
+                    return View("systemMessage", new systemMessage());
+                } finally {
+                    rep.Disconnect();
+                }
+                
             }
             return View(userDataFromForm);
 
