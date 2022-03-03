@@ -9,9 +9,13 @@ h2{
 
 .container {
     padding: 10px;
-    border: 5px solid #ff0000;
-    border-radius: 10px;
+    /*border-top: 10px solid #ff0000;*/
+    border-left: 10px solid #ff0000;
+    border-bottom: 10px solid #ff0000;
+    border-radius: 0px 20px 0px 20px;
     width: max-content;
+    box-shadow: black 0px 0px 5px
+    
 }
 
 .form-container {
