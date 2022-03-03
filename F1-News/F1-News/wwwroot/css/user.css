@@ -8,20 +8,31 @@ h2{
 }
 
 .container {
-    background-image:url(../img/RedBull.jpg);
-    padding:0;
-    margin:0;
+    padding: 10px;
+    border: 5px solid #ff0000;
+    border-radius: 10px;
+    width: max-content;
 }
 
-form {
+.form-container {
     font-size: 18px;
+    position: relative;
+    margin-inline: 3rem;
+    width: max-content;
 }
+
+
 
 input {
     border-radius: 50px;
     border: 2px solid #ff0000;
     padding: .5rem;
     transition: 2s background ease;
+    text-decoration: none;
+}
+
+input:focus {
+    outline: none;
 }
 
     input:hover {

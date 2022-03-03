@@ -125,7 +125,7 @@ namespace F1_News.Models.DB {
         public bool Update(User newUser) {
             if(this.conn?.State == ConnectionState.Open) {
                 DbCommand cmdUpdate = this.conn.CreateCommand();
-                cmdUpdate.CommandText = "update user set username = @username, password = @password, firstname = @firstname, lastname = @lastname, email = @email, birthdate = @birthdate, gender = @gender where user_id = @id";
+                cmdUpdate.CommandText = "update user set username = @username, password = sha2(@password,512), firstname = @firstname, lastname = @lastname, email = @email, birthdate = @birthdate, gender = @gender where user_id = @id";
 
                 DbParameter username = cmdUpdate.CreateParameter();
                 username.ParameterName = "username";
@@ -198,7 +198,7 @@ namespace F1_News.Models.DB {
         public bool Login(string username, string password) {
             if(this.conn?.State == ConnectionState.Open) {
                 DbCommand cmdLogin = this.conn.CreateCommand();
-                cmdLogin.CommandText = "select * from user where username = @username and password = @password";
+                cmdLogin.CommandText = "select * from user where username = @username and password = sha2(@password, 512)";
 
                 DbParameter user = cmdLogin.CreateParameter();
                 user.ParameterName = "username";
