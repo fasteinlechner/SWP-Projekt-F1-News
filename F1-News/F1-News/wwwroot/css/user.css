@@ -12,6 +12,7 @@ h2{
     border: 5px solid #ff0000;
     border-radius: 10px;
     width: max-content;
+    background-image: url("bg.jpg");
 }
 
 .form-container {
