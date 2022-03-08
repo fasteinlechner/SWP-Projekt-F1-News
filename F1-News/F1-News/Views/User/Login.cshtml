@@ -6,30 +6,33 @@
 
 
 <link rel="stylesheet" href="~/css/user.css" />
-<div class="container">
+<body>
+    <div class="bg-img"></div>
+    <div class="container">
         <form asp-controller="user" asp-action="login" method="post">
             <div class="form-container">
-              
-                    <h1>Login</h1>
-                    <hr />
-                    <h2>Anmeldedaten</h2>
-                    <hr />
 
-                    <div class="form-group">
-                        <label asp-for="Username"><h4>Benutzername</h4></label><br />
-                        <input type="text" asp-for="Username" placeholder="Benutzername" /><br />
-                        <span asp-validation-for="Username"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Password"><h4>Passwort</h4></label><br />
-                        <input type="password" asp-for="Password" placeholder="Passwort" /><br />
-                        <span asp-validation-for="Password"></span>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" value="absenden" />
-                    </div>
+                <h1>Login</h1>
+                <hr />
+                <h2>Anmeldedaten</h2>
+                <hr />
+
+                <div class="form-group">
+                    <label asp-for="Username"><h4>Benutzername</h4></label><br />
+                    <input type="text" asp-for="Username" placeholder="Benutzername" /><br />
+                    <span asp-validation-for="Username"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password"><h4>Passwort</h4></label><br />
+                    <input type="password" asp-for="Password" placeholder="Passwort" /><br />
+                    <span asp-validation-for="Password"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="absenden" />
+                </div>
             </div>
         </form>
 
-  
-</div>
+
+    </div>
+</body>

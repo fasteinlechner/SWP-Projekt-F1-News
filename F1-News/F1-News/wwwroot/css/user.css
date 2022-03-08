@@ -7,6 +7,13 @@ h2{
     color:darkred;
 }
 
+body {
+    background-image: url(../img/bg.jpg);
+    filter: blur(4px);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 .container {
     padding: 10px;
     /*border-top: 10px solid #ff0000;*/
@@ -14,9 +21,8 @@ h2{
     border-bottom: 10px solid #ff0000;
     border-radius: 0px 20px 0px 20px;
     width: max-content;
-    background-image: url("bg.jpg");
-    box-shadow: black 0px 0px 5px
-    
+    z-index:2;
+    box-shadow: black 0px 0px 5px;
 }
 
 .form-container {
@@ -24,6 +30,7 @@ h2{
     position: relative;
     margin-inline: 3rem;
     width: max-content;
+    z-index:2;
 }
 
 
