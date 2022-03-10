@@ -7,4 +7,11 @@
     text-align: center;
 }
 
+#articlelink:link {
+    color: #a4161a;
+    text-decoration: none;
+}
 
+#articlelink:hover{
+    text-decoration: underline;
+}
