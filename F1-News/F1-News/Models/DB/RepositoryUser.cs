@@ -214,11 +214,7 @@ namespace F1_News.Models.DB {
                 cmdLogin.Parameters.Add(passw);
 
                 using (DbDataReader reader = cmdLogin.ExecuteReader()) {
-                    if (reader.Read()) {
-                        return true;
-                    } else {
-                        return false;
-                    }
+                    return reader.Read();
                 }
             }
             return false;

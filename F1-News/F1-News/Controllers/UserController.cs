@@ -51,30 +51,18 @@ namespace F1_News.Controllers {
         }
         [HttpPost]
         public IActionResult Login(User userDataFromForm) {
-
-            if (userDataFromForm == null)
-            {
-                return RedirectToAction("Login");
+            try {
+               rep.Connect();
+               if(rep.Login(userDataFromForm.Username, userDataFromForm.Password)) {
+                   return View("systemMessage", new systemMessage("LOGIN-Control", "Sie haben sich erfolgreich angemeldet"));
+               } else {
+                   return View("systemMessage", new systemMessage("LOGIN-Control", "Benutzer oder Passwort falsch"));
+               }
+            } catch (DbException) {
+                return View("systemMessage", new systemMessage());
+            } finally {
+                rep.Disconnect();
             }
-            ValidateLoginData(userDataFromForm);
-            if (ModelState.IsValid)
-            {
-                try {
-                    rep.Connect();
-                    if(rep.Login(userDataFromForm.Username, userDataFromForm.Password)) {
-                        return View("systemMessage", new systemMessage("LOGIN-Control", "Sie haben sich erfolgreich angemeldet"));
-                    } else {
-                        return View("systemMessage", new systemMessage("LOGIN-Control", "Benutzer oder Passwort falsch"));
-                    }
-                } catch (DbException) {
-                    return View("systemMessage", new systemMessage());
-                } finally {
-                    rep.Disconnect();
-                }
-                
-            }
-            return View(userDataFromForm);
-
         }
         
         
