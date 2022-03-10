@@ -1,0 +1,34 @@
+﻿@model List<F1_News.Models.User>
+
+<table>
+    <thead>
+        <tr>
+            <th>User-ID</th>
+            <th>Username</th>
+            <th>Passwort</th>
+            <th>Email</th>
+            <th>Geburtsdatum</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            @foreach (User u in Model) {
+                <td>@u.UserId</td>
+                <td>@u.Username</td>
+                <td>@u.Password</td>
+                <td>@u.Email</td>
+                <td>@u.Birthdate</td>
+            }
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr> 
+            <td>colspan="7">Es sind aktuell @Model.Count() User in der Datenbank.</td>
+        </tr>
+    </tfoot>
+
+    
+
+</table>
+
+

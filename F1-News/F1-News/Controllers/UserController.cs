@@ -54,6 +54,9 @@ namespace F1_News.Controllers {
             try {
                rep.Connect();
                if(rep.Login(userDataFromForm.Username, userDataFromForm.Password)) {
+                    if (userDataFromForm.Username.Equals("adminF1")) {
+                        return RedirectToAction("AdminView");
+                    }
                    return View("systemMessage", new systemMessage("LOGIN-Control", "Sie haben sich erfolgreich angemeldet"));
                } else {
                    return View("systemMessage", new systemMessage("LOGIN-Control", "Benutzer oder Passwort falsch"));
@@ -64,7 +67,20 @@ namespace F1_News.Controllers {
                 rep.Disconnect();
             }
         }
-        
+        [HttpGet]
+        public IActionResult AdminView() {
+            try {
+                rep.Connect();
+                List<User> users=rep.GetAllUsers();
+                return View(users);
+            } catch (DbException) {
+                return View("systemMessage", new systemMessage());
+            } finally {
+                rep.Disconnect();
+            }
+            
+        }
+
         
         private void ValidateRegistrationData(User user) {
             if (user == null) {
@@ -115,5 +131,7 @@ namespace F1_News.Controllers {
             }
 
         }
+    
+        
     }
 }
