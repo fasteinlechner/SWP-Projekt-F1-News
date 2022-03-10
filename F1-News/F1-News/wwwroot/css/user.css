@@ -7,12 +7,8 @@ h2{
     color:darkred;
 }
 
-body {
-    background-image: url(../img/bg.jpg);
-    filter: blur(4px);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+.bg-img{
+    background-color:darkred;
 }
 .container {
     padding: 10px;
@@ -22,7 +18,9 @@ body {
     border-radius: 0px 20px 0px 20px;
     width: max-content;
     z-index:2;
+    background-color:white;
     box-shadow: black 0px 0px 5px;
+   
 }
 
 .form-container {
