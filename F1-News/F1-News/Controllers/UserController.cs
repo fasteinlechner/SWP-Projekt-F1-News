@@ -1,5 +1,6 @@
 ﻿using F1_News.Models;
 using F1_News.Models.DB;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,8 +10,9 @@ using System.Threading.Tasks;
 
 namespace F1_News.Controllers {
     public class UserController : Controller {
-
+        
         private IRepositoryUser rep = new RepositoryUser();
+        
         public IActionResult Index() {
             return View();
         }
@@ -57,7 +59,10 @@ namespace F1_News.Controllers {
                     if (userDataFromForm.Username.Equals("adminF1")) {
                         return RedirectToAction("AdminView");
                     }
-                   return View("systemMessage", new systemMessage("LOGIN-Control", "Sie haben sich erfolgreich angemeldet"));
+                    
+                    HttpContext.Session.SetString("uname", userDataFromForm.Username);
+                    Console.WriteLine("INFO: "+HttpContext.Session.GetString("uname"));
+                    return View("systemMessage", new systemMessage("LOGIN-Control", "Willkommen "+HttpContext.Session.GetString("uname")));
                } else {
                    return View("systemMessage", new systemMessage("LOGIN-Control", "Benutzer oder Passwort falsch"));
                }
