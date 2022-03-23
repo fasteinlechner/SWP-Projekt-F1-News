@@ -5,6 +5,11 @@
     color: red;
     background-color: white;
     text-align: center;
+    padding: 100px;
+}
+
+#articlelink{
+    margin: 100px;
 }
 
 #articlelink:link {
