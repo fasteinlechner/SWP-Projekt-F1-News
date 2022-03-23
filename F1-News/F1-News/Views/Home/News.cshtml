@@ -1,4 +1,4 @@
-﻿
+﻿@using Microsoft.AspNetCore.Http;
 @{
     ViewData["Title"] = "News";
 }
@@ -6,8 +6,9 @@
 <h1>News</h1>
 
 <div class="discusBox">
+    
     <img src=""> <!-- just for testing -->
-
+    <h1>Willkommen @Context.Session.GetString("uname")</h1>
     <div class="discusTitle">
         <h3>Max Verstappen gegen Lewis Hamilton: Anhörung der FIA</h3> <!-- just for testing -->
     </div>
