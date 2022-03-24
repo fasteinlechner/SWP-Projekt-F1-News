@@ -86,6 +86,13 @@ namespace F1_News.Controllers {
             
         }
 
+        [HttpGet]
+
+        public IActionResult Logout() {
+            HttpContext.Session.Remove("uname");
+            return View("systemMessage", new systemMessage("LOGOUT-Control","Erfolgreich ausgeloggt"));
+        }
+
         
         private void ValidateRegistrationData(User user) {
             if (user == null) {

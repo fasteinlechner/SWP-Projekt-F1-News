@@ -1,23 +1,38 @@
-﻿
+﻿@using Microsoft.AspNetCore.Http;
 
 
-
-<h1>Hier können Sie sich registrieren und einloggen!</h1>
-
-<div class="container" style="padding-top: 60px">
-    <div class="box">
-        <a href="/user/registration">
+@{if (Context.Session.GetString("uname")!=null) {
+        <h1>Deine Daten</h1>
+        <p>Die Daten von @Context.Session.GetString("uname")</p>
+        <a href="/user/logout">
             <div class="register first">
-               <b> Benutzer erstellen </b> 
+                <b>LOGOUT</b>
             </div>
         </a>
-        <a href="/user/Login">
-            <div class="register second">
-                <b>Anmelden</b>
+
+
+    } else {
+        <h1>Hier können Sie sich registrieren und einloggen!</h1>
+
+        <div class="container" style="padding-top: 60px">
+            <div class="box">
+                <a href="/user/registration">
+                    <div class="register first">
+                        <b> Benutzer erstellen </b>
+                    </div>
+                </a>
+                <a href="/user/Login">
+                    <div class="register second">
+                        <b>Anmelden</b>
+                    </div>
+                </a>
             </div>
-        </a>
-    </div>
-</div>
+        </div>
+    }
+
+
+}
+
 
 
 <style>
@@ -39,19 +54,20 @@
         text-align: center;
     }
 
-    .box{
+    .box {
         display: grid;
-        height:100%;
+        height: 100%;
         grid-template-rows: repeat(4,1fr);
         grid-template-columns: repeat(2, 1fr);
-        grid-gap:20px;
+        grid-gap: 20px;
     }
 
-    .first{
-        grid-row:span 1;
+    .first {
+        grid-row: span 1;
         grid-column: span 2;
     }
-    .second{
+
+    .second {
         grid-row: span 1;
         grid-column: span 2;
     }
@@ -63,13 +79,13 @@
         background: red;
         box-shadow: 4px 0px 10px #000000;
         position: relative;
-        z-index:1;
-        align-content:center;
-        font-size:25px;
-        color:white;
-        text-decoration:none;
-        padding:10px;
-        border-radius:40px;
+        z-index: 1;
+        align-content: center;
+        font-size: 25px;
+        color: white;
+        text-decoration: none;
+        padding: 10px;
+        border-radius: 40px;
     }
 
         .register::after {
@@ -87,14 +103,8 @@
             border-radius: 40px;
         }
 
-    .register:hover::after{
-        transform: scaleX(1);
-        transform-origin:center;
-    }
-
-
-
-
-
-
+        .register:hover::after {
+            transform: scaleX(1);
+            transform-origin: center;
+        }
 </style>
