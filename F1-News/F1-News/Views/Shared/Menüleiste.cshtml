@@ -11,13 +11,20 @@
     </ul>
 
     <ul class="navigation right">
-        <li><a href="/user/index"><img style="width:50px; margin:10px;" src="~/img/lock.png" alt=""></a></li>
-        <li>
-            <form action="">
-                <input class="nav-search" type="search" placeholder="Suche">
-            </form>
-        </li>
-    </ul>
+        @if (Context.Session.GetString("uname") != null){
+                <li><a href="/user/index"><img style="width:50px; margin:10px;" src="/img/lock_open.png" alt=""></a></li>
+            }
+            else
+            {
+                <li><a href="/user/index"><img style="width:50px; margin:10px;" src="/img/lock.png" alt=""></a></li>
+
+            }
+            <li>
+                <form action="">
+                    <input class="nav-search" type="search" placeholder="Suche">
+                </form>
+            </li>
+        </ul>
 
 </section>
 

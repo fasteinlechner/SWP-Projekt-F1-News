@@ -10,20 +10,26 @@ using System.Threading.Tasks;
 
 namespace F1_News.Controllers {
     public class UserController : Controller {
+
+        public static string lockStr = "~/img/lock.png";
         
         private IRepositoryUser rep = new RepositoryUser();
         
-        public IActionResult Index() {
+        public async Task<IActionResult> Index(/*User user*/) {
+            //if (user != null)
+            //{
+            //    HttpRequest req = HttpResponseWritingExtensions
+            //}
             return View();
         }
 
         [HttpGet]
-        public IActionResult Registration() {
+        public async Task<IActionResult> Registration() {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Registration(User userDataFromForm) {
+        public async Task<IActionResult> Registration(User userDataFromForm) {
            
             if (userDataFromForm == null) {
                 return RedirectToAction("Registration");
@@ -31,8 +37,8 @@ namespace F1_News.Controllers {
             ValidateRegistrationData(userDataFromForm);
             if (ModelState.IsValid) {
                 try {
-                    rep.Connect();
-                    if (rep.Insert(userDataFromForm)) {
+                    await rep.ConnectAsync();
+                    if (await rep.InsertAsync(userDataFromForm)) {
                         return View("systemMessage", new systemMessage("Registration-Control", "Sie haben sich erfolgreich registriert!"));
                     } else {
                         return View("systemMessage", new systemMessage("Registration-Control", "Etwas ist schiefgelaufen!"));
@@ -40,7 +46,7 @@ namespace F1_News.Controllers {
                 } catch (DbException) {
                     return View("systemMessage", new systemMessage());
                 } finally {
-                    rep.Disconnect();
+                    await rep.DisconnectAsync();
                 }
             }
             return View(userDataFromForm);
@@ -52,36 +58,38 @@ namespace F1_News.Controllers {
             return View();
         }
         [HttpPost]
-        public IActionResult Login(User userDataFromForm) {
+        public async Task<IActionResult> Login(User userDataFromForm) {
             try {
-               rep.Connect();
-               if(rep.Login(userDataFromForm.Username, userDataFromForm.Password)) {
+               await rep .ConnectAsync();
+               if(await rep .LoginAsync(userDataFromForm.Username, userDataFromForm.Password)) {
                     if (userDataFromForm.Username.Equals("adminF1")) {
                         return RedirectToAction("AdminView");
                     }
                     
                     HttpContext.Session.SetString("uname", userDataFromForm.Username);
                     Console.WriteLine("INFO: "+HttpContext.Session.GetString("uname"));
-                    return View("systemMessage", new systemMessage("LOGIN-Control", "Willkommen "+HttpContext.Session.GetString("uname")));
+                    //Schloss-Icon auswechseln (=> entsperrt)
+                    lockStr = "~/img/lock_open.png";
+                    return RedirectToAction("index", "user", userDataFromForm);
                } else {
                    return View("systemMessage", new systemMessage("LOGIN-Control", "Benutzer oder Passwort falsch"));
                }
             } catch (DbException) {
                 return View("systemMessage", new systemMessage());
             } finally {
-                rep.Disconnect();
+                await rep .DisconnectAsync();
             }
         }
         [HttpGet]
-        public IActionResult AdminView() {
+        public async Task<IActionResult> AdminView() {
             try {
-                rep.Connect();
-                List<User> users=rep.GetAllUsers();
+                await rep.ConnectAsync();
+                List<User> users= await rep.GetAllUsersAsync();
                 return View(users);
             } catch (DbException) {
                 return View("systemMessage", new systemMessage());
             } finally {
-                rep.Disconnect();
+                await rep.DisconnectAsync();
             }
             
         }
@@ -143,7 +151,11 @@ namespace F1_News.Controllers {
             }
 
         }
-    
         
+        private void changeLock() {
+
+        }
+
+
     }
 }

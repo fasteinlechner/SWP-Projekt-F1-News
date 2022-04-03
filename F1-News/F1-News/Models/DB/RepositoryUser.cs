@@ -10,25 +10,25 @@ namespace F1_News.Models.DB {
     public class RepositoryUser : IRepositoryUser {
         private String connectionString = "Server=localhost;database=f1DB;user=root;password=hallo123!";
         private DbConnection conn;
-        public void Connect() {
+        public async Task ConnectAsync() {
             if(this.conn == null) {
                 this.conn = new MySqlConnection(this.connectionString);
             }
             if(this.conn.State != ConnectionState.Open) {
-                this.conn.Open();
+                await this.conn.OpenAsync();
             }
         }
-        public void Disconnect() {
+        public async Task DisconnectAsync() {
             if (this.conn !=null && this.conn.State == ConnectionState.Open) {
-                this.conn.Close();
+                await this.conn.CloseAsync();
             }
         }
-        public List<User> GetAllUsers() {
+        public async Task<List<User>> GetAllUsersAsync() {
             List<User> users = new List<User>();
             if (this.conn?.State == ConnectionState.Open) {
                 DbCommand cmdSelectAll = this.conn.CreateCommand();
                 cmdSelectAll.CommandText = "Select * from user";
-                using(DbDataReader reader = cmdSelectAll.ExecuteReader()) {
+                using(DbDataReader reader = await cmdSelectAll.ExecuteReaderAsync()) {
                     while (reader.Read()) {
                         users.Add(new User() {
                             UserId = Convert.ToInt32(reader["user_id"]),
@@ -45,7 +45,7 @@ namespace F1_News.Models.DB {
             }
             return users;
         }
-        public User GetUserById(int id) {
+        public async Task<User> GetUserByIdAsync(int id) {
             User user = new User();
             if (this.conn?.State == ConnectionState.Open) {
                 DbCommand cmdSelectOne = this.conn.CreateCommand();
@@ -55,7 +55,7 @@ namespace F1_News.Models.DB {
                 paramId.DbType = DbType.Int32;
                 paramId.Value = id;
                 cmdSelectOne.Parameters.Add(paramId);
-                using(DbDataReader reader = cmdSelectOne.ExecuteReader()) {
+                using(DbDataReader reader = await cmdSelectOne.ExecuteReaderAsync()) {
                     if (reader.Read()) {
                         user.UserId = Convert.ToInt32(reader["user_id"]);
                         user.Username = Convert.ToString(reader["username"]);
@@ -70,7 +70,7 @@ namespace F1_News.Models.DB {
             }
             return user;
         }
-        public bool Insert(User user) {
+        public async Task<bool> InsertAsync(User user) {
             if(this.conn?.State == ConnectionState.Open) {
                 DbCommand cmdInsert = this.conn.CreateCommand();
                 cmdInsert.CommandText = "insert into user values(null, @username, sha2(@password,512), @firstname, @lastname, @email, @birthdate, @gender);";
@@ -118,11 +118,11 @@ namespace F1_News.Models.DB {
                 cmdInsert.Parameters.Add(birthdate);
                 cmdInsert.Parameters.Add(gender);
 
-                return cmdInsert.ExecuteNonQuery() == 1;
+                return await cmdInsert.ExecuteNonQueryAsync() == 1;
             }
             return false;
         }
-        public bool Update(User newUser) {
+        public async Task<bool> UpdateAsync(User newUser) {
             if(this.conn?.State == ConnectionState.Open) {
                 DbCommand cmdUpdate = this.conn.CreateCommand();
                 cmdUpdate.CommandText = "update user set username = @username, password = sha2(@password,512), firstname = @firstname, lastname = @lastname, email = @email, birthdate = @birthdate, gender = @gender where user_id = @id";
@@ -176,11 +176,11 @@ namespace F1_News.Models.DB {
                 cmdUpdate.Parameters.Add(gender);
                 cmdUpdate.Parameters.Add(id);
 
-                return cmdUpdate.ExecuteNonQuery() == 1;
+                return await cmdUpdate.ExecuteNonQueryAsync() == 1;
             }
             return false;
         }
-        public bool Delete(int userId) {
+        public async Task<bool> DeleteAsync(int userId) {
             if(this.conn?.State == ConnectionState.Open) {
                 DbCommand cmdDelete = this.conn.CreateCommand();
                 cmdDelete.CommandText = "delete from user where user_id = @id";
@@ -191,11 +191,11 @@ namespace F1_News.Models.DB {
                 id.Value = userId;
                 cmdDelete.Parameters.Add(id);
 
-                return cmdDelete.ExecuteNonQuery() == 1;
+                return await cmdDelete.ExecuteNonQueryAsync () == 1;
             }
             return false;
         }
-        public bool Login(string username, string password) {
+        public async Task<bool> LoginAsync(string username, string password) {
             if(this.conn?.State == ConnectionState.Open) {
                 DbCommand cmdLogin = this.conn.CreateCommand();
                 cmdLogin.CommandText = "select * from user where username = @username and password = sha2(@password, 512)";
@@ -213,7 +213,7 @@ namespace F1_News.Models.DB {
                 cmdLogin.Parameters.Add(user);
                 cmdLogin.Parameters.Add(passw);
 
-                using (DbDataReader reader = cmdLogin.ExecuteReader()) {
+                using (DbDataReader reader = await cmdLogin.ExecuteReaderAsync()) {
                     return reader.Read();
                 }
             }
