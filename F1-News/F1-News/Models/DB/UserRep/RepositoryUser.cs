@@ -6,7 +6,7 @@ using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace F1_News.Models.DB {
+namespace F1_News.Models.DB.UserRep{
     public class RepositoryUser : IRepositoryUser {
         private String connectionString = "Server=localhost;database=f1DB;user=root;password=hallo123!";
         private DbConnection conn;

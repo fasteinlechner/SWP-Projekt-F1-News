@@ -5,20 +5,37 @@ using System.Threading.Tasks;
 
 namespace F1_News.Models {
     public class Article {
-        private decimal price;
+        private int articleID;
+        private decimal preis;
 
-        public decimal Price {
-            get { return this.price; }
+        public int ArticleID {
+            get { return this.articleID;}
             set {
-                if(value > 0)
-                {
-                    this.price = value;
+                if (value > 0) {
+                    this.articleID = value;
                 }
             }
         }
-
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public int Items { get; set; }
+        public decimal Preis {
+            get { return this.preis; }
+            set {
+                if(value > 0)
+                {
+                    this.preis = value;
+                }
+            }
+        }
+        public string Bezeichnung { get; set; }
+        public string Beschreibung { get; set; }
+        public int Elemente { get; set; }
+        public Article() : this(0, "Article", "das ist ein Artikel", 0, 0) { }
+        public Article(int articleId, string bez, string bes, int preis , int elemente) {
+            this.ArticleID = articleId;
+            this.Bezeichnung= bez;
+            this.Beschreibung = bes;
+            this.Preis = preis;
+            this.Elemente = elemente;
+        }
+        
     }
 }
