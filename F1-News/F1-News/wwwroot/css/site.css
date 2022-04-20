@@ -41,7 +41,7 @@ main {
     /*background-color: white;*/
     
     width: 100%;
-    padding: 12px 20px 12px 12px;
+    padding: 12px 0px 12px 0px;
     font-family: F1;
     position: relative;
     height: calc(100% - var(--header-height));
@@ -180,6 +180,35 @@ footer {
     justify-content: center;
     align-items: center;
 }*/
+
+.welc {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    color: white;
+    background-color: black;
+    align-items: center;
+}
+
+.welc span {
+    
+    bottom: 8px;
+    right: 16px;
+}
+
+.welc img {
+    width: 600px;
+    height: 270px;
+}
+
+
+
+.carousel slide{
+    position: absolute;
+}
+
 
 
 
