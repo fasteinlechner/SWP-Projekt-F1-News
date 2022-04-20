@@ -1,3 +1,5 @@
+using F1_News.Models.Services;
+using F1_News.Models.Settings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -22,6 +24,9 @@ namespace F1_News {
             services.AddControllersWithViews();
 
             services.AddDistributedMemoryCache(); // <- This service
+            //For Mail-Settings
+            services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
+            services.AddTransient<IMailService, MailService>();
 
             services.AddSession(options =>
             {
