@@ -1,7 +1,10 @@
 ﻿using F1_News.Models;
 using F1_News.Models.DB.UserRep;
+using F1_News.Models.Services;
+using F1_News.Models.Settings;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -14,6 +17,7 @@ namespace F1_News.Controllers {
         public static string lockStr = "~/img/lock.png";
         
         private IRepositoryUser rep = new RepositoryUser();
+        //private readonly IMailService mailService = new MailService();
         
         public async Task<IActionResult> Index(/*User user*/) {
             //if (user != null)
@@ -39,6 +43,12 @@ namespace F1_News.Controllers {
                 try {
                     await rep.ConnectAsync();
                     if (await rep.InsertAsync(userDataFromForm)) {
+                        /*MailRequest request = new();
+                        request.ToEmail = "fsteinlechner4@gmail.com";
+                        request.Subject = "F1-NEWS";
+                        request.Body = "WILLKOMMEN zu unserem Newsletter!";
+
+                        await mailService.SendEmailAsync(request);*/
                         return View("systemMessage", new systemMessage("Registration-Control", "Sie haben sich erfolgreich registriert!"));
                     } else {
                         return View("systemMessage", new systemMessage("Registration-Control", "Etwas ist schiefgelaufen!"));
