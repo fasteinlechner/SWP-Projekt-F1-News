@@ -1,69 +1,32 @@
-﻿
+﻿@model List<Article>
+ 
 @{
     ViewData["Title"] = "Index";
 }
+
 
 <h1>Unser Fanshop</h1>
 
 <link rel="stylesheet" href="~/css/shop.css" />
 <div class="container">
     <div class="row">
-        <a href="" id="articlelink">
-            <div class="col-sm" style="width:200px; height:200px ">
-                <img src="/img/McLaren.png" width="100" height="100" />
-                <br />
-                McLaren Schildkappe
-            </div>
-        </a>
-        <a href="" id="articlelink">
-            <div class="col-sm" style="width: 200px; height: 200px">
-                <img src="/img/McLaren.png" width="100" height="100" />
-                <br />
-                anderer Artikel
-            </div>
-        </a>
-        <a href="" id="articlelink">
-            <div class="col-sm" style="width: 200px; height: 200px">
-                <img src="/img/McLaren.png" width="100" height="100" />
-                <br />
-                anderer Artikel
-            </div>
-        </a>
-        <a href="" id="articlelink">
-            <div class="col-sm" style="width: 200px; height: 200px">
-                <img src="/img/McLaren.png" width="100" height="100" />
-                <br />
-                anderer Artikel
-            </div>
-        </a>
+        @{
+
+            int i = 0;
+            foreach (Article a in Model) {
+                <a href="" id="articlelink">
+                    <div class="col-sm" style="width:200px; height:200px ">
+                        <img src="/img/McLaren.png" width="100" height="100" />
+                        <br />
+                        @a.Bezeichnung
+                    </div>
+                </a>
+                i++;
+                if (i == 4) {
+                    //Zeilenumbruch
+                }
+            }
+        }
     </div>
-    <div class="row">
-        <a href="" id="articlelink">
-            <div class="col-sm" style="width: 200px; height: 200px">
-                <img src="/img/McLaren.png" width="100" height="100" />
-                <br />
-                anderer Artikel
-            </div>
-        </a>
-        <a href="" id="articlelink">
-            <div class="col-sm" style="width: 200px; height: 200px">
-                <img src="/img/McLaren.png" width="100" height="100" />
-                <br />
-                anderer Artikel
-            </div>
-        </a>
-        <a href="" id="articlelink" >
-            <div class="col-sm" style="width: 200px; height: 200px">
-                <img src="/img/McLaren.png" width="100" height="100" />
-                <br />
-                anderer Artikel
-            </div>
-        </a>
-        <a href="" id="articlelink" >
-            <div class="col-sm" style="width: 200px; height: 200px">
-                <img src="/img/McLaren.png" width="100" height="100" />
-                <br />
-                anderer Artikel
-            </div>
-        </a>
-    </div>
+
+

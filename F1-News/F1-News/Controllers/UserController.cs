@@ -1,5 +1,5 @@
 ﻿using F1_News.Models;
-using F1_News.Models.DB;
+using F1_News.Models.DB.UserRep;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -62,11 +62,10 @@ namespace F1_News.Controllers {
             try {
                await rep .ConnectAsync();
                if(await rep .LoginAsync(userDataFromForm.Username, userDataFromForm.Password)) {
+                    HttpContext.Session.SetString("uname", userDataFromForm.Username);
                     if (userDataFromForm.Username.Equals("adminF1")) {
                         return RedirectToAction("AdminView");
                     }
-                    
-                    HttpContext.Session.SetString("uname", userDataFromForm.Username);
                     Console.WriteLine("INFO: "+HttpContext.Session.GetString("uname"));
                     //Schloss-Icon auswechseln (=> entsperrt)
                     lockStr = "~/img/lock_open.png";
