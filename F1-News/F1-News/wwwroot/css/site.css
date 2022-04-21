@@ -46,6 +46,7 @@ main {
     position: relative;
     height: calc(100% - var(--header-height));
     overflow-y: auto;
+    
 }
 
 
@@ -181,32 +182,35 @@ footer {
     align-items: center;
 }*/
 
+
+/*HOME*/
+
 .welc {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    display: flex;
-    justify-content: right;
+    margin-top: 20px;
+    width: 100vw;
+    height: 270px;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 0px;
     color: white;
     background-color: black;
-    align-items: center;
+    text-align: center;
 }
 
-.welc span {
-    
-    bottom: 8px;
-    right: 16px;
-}
+    .welc span {
+        top: 40%; /* Adjust this value to move the positioned div up and down */
+        text-align: center;
+        width: 60%; /* Set the width of the positioned div */
+    }
+
 
 .welc img {
-    width: 600px;
-    height: 270px;
-}
-
-
-
-.carousel slide{
+    width: 700px;
     position: absolute;
+    height: 270px;
+    left: 0px;
+    right: 0px;
 }
 
 
