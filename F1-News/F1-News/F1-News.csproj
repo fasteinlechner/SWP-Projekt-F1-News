@@ -11,6 +11,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Models\Services\WelcomeTemp\F1-logo.png" />
+    <Content Include="Models\Services\WelcomeTemp\Formula1-Regular_web_0.ttf" />
+    <Content Include="Models\Services\WelcomeTemp\welcomeTemp.css" />
+    <Content Include="Models\Services\WelcomeTemp\welcomeTemp.html" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MailKit" Version="3.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
