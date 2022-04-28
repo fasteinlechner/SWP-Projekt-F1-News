@@ -1,8 +1,16 @@
 ﻿@using Microsoft.AspNetCore.Http;
+@using F1_News.Models.Helpers;
 
 
 @{if (Context.Session.GetString("uname")!=null) {
-        <h1>Deine Daten</h1>
+        <h1>Deine Daten</h1> <br />
+       // @SessionHelper.GetObjectFromJson<F1-News.Models.User>(Context.Session, "user").Username;
+        <table>
+            <tr>
+                <td></td>
+            </tr>
+        </table>
+
         <p>Die Daten von @Context.Session.GetString("uname")</p>
         <a href="/user/logout">
             <div class="register first">

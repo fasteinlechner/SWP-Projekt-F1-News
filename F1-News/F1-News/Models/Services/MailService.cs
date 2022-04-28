@@ -32,7 +32,7 @@ namespace F1_News.Models.Services {
             var email = new MimeMessage();
             email.Sender = MailboxAddress.Parse(mailSettings.Mail);
             email.To.Add(MailboxAddress.Parse(request.ToEmail));
-            email.Subject = $"Welcome {request.Firstname}";
+            email.Subject = $"Willkommen {request.Firstname} zu unserem F1-NEWSBLOG";
             var builder = new BodyBuilder();
             builder.HtmlBody = Mail;
             email.Body = builder.ToMessageBody();

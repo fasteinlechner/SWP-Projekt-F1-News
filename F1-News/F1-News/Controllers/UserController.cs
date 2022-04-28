@@ -1,5 +1,6 @@
 ﻿using F1_News.Models;
 using F1_News.Models.DB.UserRep;
+using F1_News.Models.Helpers;
 using F1_News.Models.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -37,15 +38,15 @@ namespace F1_News.Controllers {
             if (userDataFromForm == null) {
                 return RedirectToAction("Registration");
             }
-            //ValidateRegistrationData(userDataFromForm);
+            ValidateRegistrationData(userDataFromForm);
             if (ModelState.IsValid) {
                 try {
                     await rep.ConnectAsync();
-                    if (true/*await rep.InsertAsync(userDataFromForm)*/) {
+                    if (await rep.InsertAsync(userDataFromForm)) {
                         PersonalizedMail request = new();
-                        request.ToEmail = "fsteinlechner4@gmail.com";
-                        request.Firstname = "Fabian";
-                        request.Username = "fasteinlechner";
+                        request.ToEmail = userDataFromForm.Email;
+                        request.Firstname = userDataFromForm.Firstname;
+                        request.Username = userDataFromForm.Username;
 
                         await mailService.SendWelcomeEmailAsync(request);
                         List<String> list = new List<string>();
@@ -75,6 +76,7 @@ namespace F1_News.Controllers {
                await rep .ConnectAsync();
                if(await rep .LoginAsync(userDataFromForm.Username, userDataFromForm.Password)) {
                     HttpContext.Session.SetString("uname", userDataFromForm.Username);
+                    SessionHelper.SetObjectAsJson(HttpContext.Session, "user", userDataFromForm);
                     if (userDataFromForm.Username.Equals("adminF1")) {
                         return RedirectToAction("AdminView");
                     }
