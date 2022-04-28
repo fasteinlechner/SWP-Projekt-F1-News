@@ -6,5 +6,6 @@ using System.Threading.Tasks;
 namespace F1_News.Models.Services {
     public interface IMailService {
         Task SendEmailAsync(MailRequest mailRequest);
+        Task SendWelcomeEmailAsync(PersonalizedMail request);
     }
 }

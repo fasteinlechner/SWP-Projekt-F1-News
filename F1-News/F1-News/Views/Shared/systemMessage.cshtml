@@ -7,5 +7,21 @@
 <body>
     <h1>@Model.Header</h1> <br />
     <b>@Model.MessageText</b>
+
+    @if (Model.ButtonInfo !=null) {
+        <br /><br />
+        <a class ="btnLog" href=@Model.ButtonInfo[0]>@Model.ButtonInfo[1]</a>
+     }
 </body>
+
+<style>
+    .btnLog {
+        border-radius: 50px;
+        border: 2px solid #ff0000;
+        padding: .5rem;
+        transition: 2s background ease;
+        text-decoration: none; 
+    }
+</style>
+
 </html>

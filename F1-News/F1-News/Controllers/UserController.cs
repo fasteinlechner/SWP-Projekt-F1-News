@@ -1,29 +1,28 @@
 ﻿using F1_News.Models;
 using F1_News.Models.DB.UserRep;
 using F1_News.Models.Services;
-using F1_News.Models.Settings;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace F1_News.Controllers {
     public class UserController : Controller {
 
         public static string lockStr = "~/img/lock.png";
+
+        private readonly IMailService mailService;
+        public UserController(IMailService mailServ) {
+            mailService = mailServ;
+        }
+
         
         private IRepositoryUser rep = new RepositoryUser();
-        //private readonly IMailService mailService = new MailService();
         
-        public async Task<IActionResult> Index(/*User user*/) {
-            //if (user != null)
-            //{
-            //    HttpRequest req = HttpResponseWritingExtensions
-            //}
+        
+        public async Task<IActionResult> Index() {
             return View();
         }
 
@@ -38,18 +37,21 @@ namespace F1_News.Controllers {
             if (userDataFromForm == null) {
                 return RedirectToAction("Registration");
             }
-            ValidateRegistrationData(userDataFromForm);
+            //ValidateRegistrationData(userDataFromForm);
             if (ModelState.IsValid) {
                 try {
                     await rep.ConnectAsync();
-                    if (await rep.InsertAsync(userDataFromForm)) {
-                        /*MailRequest request = new();
+                    if (true/*await rep.InsertAsync(userDataFromForm)*/) {
+                        PersonalizedMail request = new();
                         request.ToEmail = "fsteinlechner4@gmail.com";
-                        request.Subject = "F1-NEWS";
-                        request.Body = "WILLKOMMEN zu unserem Newsletter!";
+                        request.Firstname = "Fabian";
+                        request.Username = "fasteinlechner";
 
-                        await mailService.SendEmailAsync(request);*/
-                        return View("systemMessage", new systemMessage("Registration-Control", "Sie haben sich erfolgreich registriert!"));
+                        await mailService.SendWelcomeEmailAsync(request);
+                        List<String> list = new List<string>();
+                        list.Add("/user/login");
+                        list.Add("Zum LOGIN");
+                        return View("systemMessage", new systemMessage("Registration-Control", "Sie haben sich erfolgreich registriert!", list));
                     } else {
                         return View("systemMessage", new systemMessage("Registration-Control", "Etwas ist schiefgelaufen!"));
                     }
