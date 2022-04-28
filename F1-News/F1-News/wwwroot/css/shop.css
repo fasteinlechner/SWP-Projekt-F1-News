@@ -1,11 +1,16 @@
 ﻿.col-sm {
+    position: absolute;
     border-radius: 20px;
     border-left: 10px solid #ff0000;
     border-bottom: 10px solid #ff0000;
     color: red;
-    background-color: white;
-    text-align: center;
-    padding: 200px;
+    background-color: black;
+    text-align: right;
+    padding-left: 300px;
+}
+
+.col-sm img{
+
 }
 
 #articlelink{
@@ -19,5 +24,5 @@
 }
 
 #articlelink:hover{
-    text-decoration: underline;
+    color: red;
 }
