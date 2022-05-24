@@ -10,6 +10,6 @@ namespace F1_News.Models.DB.ArticleRep {
         Task<bool> DeleteArticleAsync(int id);
         Task<List<Article>> GetAllArticlesAsync();
         Task<bool> InsertAsync(Article article);
-        Task<bool> UpdateAsync(Article newArticle);
+        Task<bool> UpdateAnzAsync(int anz, int id);
     }
 }

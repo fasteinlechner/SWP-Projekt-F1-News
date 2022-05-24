@@ -19,6 +19,7 @@ namespace F1_News.Models.DB.ArticleRep {
                 await this.conn.OpenAsync();
             }
         }
+       
         public async Task DisconnectAsync() {
             if(this.conn!=null && this.conn.State == ConnectionState.Open) {
                 await this.conn.CloseAsync();
@@ -93,9 +94,28 @@ namespace F1_News.Models.DB.ArticleRep {
             throw new NotImplementedException();
         }
 
-        public async Task<bool> UpdateAsync(Article newArticle) {
-            //TODO
-            throw new NotImplementedException();
+        public async Task<bool> UpdateAnzAsync(int anz, int id) {
+            if(this.conn?.State == ConnectionState.Open) {
+                DbCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "update article set elemente=@elem where idarticle=@id";
+
+                DbParameter parElem = cmd.CreateParameter();
+                parElem.ParameterName = "elem";
+                parElem.DbType = DbType.Int32;
+                parElem.Value = anz;
+
+                DbParameter parId = cmd.CreateParameter();
+                parId.ParameterName = "id";
+                parId.DbType = DbType.Int32;
+                parId.Value = id;
+
+                cmd.Parameters.Add(parElem);
+                cmd.Parameters.Add(parId);
+
+                return await cmd.ExecuteNonQueryAsync() == 1;
+            }
+            return false;
         }
+    
     }
 }
