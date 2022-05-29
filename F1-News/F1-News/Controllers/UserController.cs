@@ -11,8 +11,8 @@ using System.Threading.Tasks;
 
 namespace F1_News.Controllers {
     public class UserController : Controller {
-
-        public static string lockStr = "~/img/lock.png";
+        public const string L = "~/img/lock.png";
+        public static string lockStr = L;
 
         private readonly IMailService mailService;
         public UserController(IMailService mailServ) {
