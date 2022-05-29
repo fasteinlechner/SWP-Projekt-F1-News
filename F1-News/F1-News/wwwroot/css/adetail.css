@@ -1,0 +1,77 @@
+﻿@font-face {
+    font-family: F1;
+    src: url(fonts/Formula1-Regular_web_0.ttf);
+}
+
+
+* {
+    font-family: F1;
+}
+
+.name {
+    color: #ff0000;
+}
+
+.aback {
+    right: 0px;
+    left: 0px;
+    top: 0px;
+    text-align: start;
+}
+
+.backpng:hover {
+    height: 26px;
+    width: 26px;
+}
+
+.detail {
+    height: 450px;
+    width: 50%;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-left: 10px solid #ff0000;
+    border-bottom: 10px solid #ff0000;
+    box-shadow: black 0px 0px 5px;
+    color: red;
+    text-align: left;
+    padding: 20px;
+    box-shadow: 5px #888888;
+    text-align: start;
+}
+
+    .detail a {
+        text-decoration: none;
+        text-align: end;
+    }
+
+        .detail a:hover {
+            border: 3px;
+            text-decoration-line: underline;
+        }
+
+.dprice {
+    font-size: 30px;
+    color: black;
+}
+
+
+.wkbutton {
+    width: 300px;
+    display: flex;
+    cursor: pointer;
+    background: red;
+    box-shadow: 4px 0px 10px #000000;
+    z-index: 1;
+    align-content: center;
+    font-size: 18px;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 40px;
+    position: center;
+}
+
+    .wkbutton:hover {
+        transform: scaleX(1.04);
+        transform-origin: center;
+    }
