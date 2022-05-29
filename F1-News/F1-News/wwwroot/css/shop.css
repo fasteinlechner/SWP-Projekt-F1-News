@@ -1,12 +1,4 @@
-﻿@font-face {
-    font-family: F1;
-    src: url(fonts/Formula1-Regular_web_0.ttf);
-}
-
-
-* {
-    font-family: F1;
-}
+﻿
 
 .article {
     width: 280px;
