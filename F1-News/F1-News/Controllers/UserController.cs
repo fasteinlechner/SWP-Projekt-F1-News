@@ -23,12 +23,16 @@ namespace F1_News.Controllers {
         private IRepositoryUser rep = new RepositoryUser();
         
         
+#pragma warning disable CS1998 // Bei der asynchronen Methode fehlen "await"-Operatoren. Die Methode wird synchron ausgeführt.
         public async Task<IActionResult> Index() {
+#pragma warning restore CS1998 // Bei der asynchronen Methode fehlen "await"-Operatoren. Die Methode wird synchron ausgeführt.
             return View();
         }
 
         [HttpGet]
+#pragma warning disable CS1998 // Bei der asynchronen Methode fehlen "await"-Operatoren. Die Methode wird synchron ausgeführt.
         public async Task<IActionResult> Registration() {
+#pragma warning restore CS1998 // Bei der asynchronen Methode fehlen "await"-Operatoren. Die Methode wird synchron ausgeführt.
             return View();
         }
 

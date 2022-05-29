@@ -16,13 +16,13 @@ namespace F1_News.Models.DB.ArticleRep {
                 this.conn = new MySqlConnection(this.connection);
             }
             if(this.conn.State != ConnectionState.Open) {
-                await this.conn.OpenAsync();
+                await conn.OpenAsync();
             }
         }
        
         public async Task DisconnectAsync() {
             if(this.conn!=null && this.conn.State == ConnectionState.Open) {
-                await this.conn.CloseAsync();
+                await conn.CloseAsync();
             }
         }
 
@@ -89,7 +89,8 @@ namespace F1_News.Models.DB.ArticleRep {
             return null;
         }
 
-        public async Task<bool> InsertAsync(Article article) {
+        public bool Insert(Article article)
+        {
             //TODO
             throw new NotImplementedException();
         }
@@ -116,6 +117,10 @@ namespace F1_News.Models.DB.ArticleRep {
             }
             return false;
         }
-    
+
+        public Task<bool> InsertAsync(Article article)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,0 +1,35 @@
+﻿@model List<Article>
+
+@{
+    ViewData["Title"] = "articleDetail";
+}
+
+
+<!DOCTYPE html>
+<link rel="stylesheet" href="/adetail.css" />
+<html>
+<head>
+</head>
+<body>
+    <div class="detail">
+        <a class="aBack" href="/Index.html"><img class="back" src="/back.png" width="23" height="23" /></a> <br> <br>
+        <br><br>
+        <img class="img" src="/McLaren.png" />
+        <br> <br>
+        <div class="dverf"><p>noch Verfügbar:</p> <b>221 St.</b></div>
+        <br>
+        <div class="dpreis"><b>55€</b></div>
+        <br>
+        <div class="purchaseBtn">
+            <a href="">
+                <div id="wk" class="wkbutton"><b>Zum Warenkorb hinzufügen</b></div>      <!-- wk ... Warenkorb -->
+            </a>
+            <br>
+            <a href="">
+                <div id="buyNow" class="wkbutton"><b>Jetzt kaufen</b></div>
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

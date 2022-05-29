@@ -13,11 +13,11 @@ namespace F1_News.Controllers {
         public async Task<IActionResult> Index() {
             try {
                 await rep.ConnectAsync();
-                List<Article> articles = new List<Article>();
-                articles = await rep.GetAllArticlesAsync();
+                List<Article> articles = await rep.GetAllArticlesAsync();
                 return View(articles);
             } catch (DbException) {
-                return View("systemMessage", new systemMessage("DB-CONTROL", "ERROR-404"));
+                systemMessage model = new("DB-CONTROL", "ERROR-404");
+                return base.View("systemMessage", model);
             } finally {
                 await rep.DisconnectAsync();
             }
