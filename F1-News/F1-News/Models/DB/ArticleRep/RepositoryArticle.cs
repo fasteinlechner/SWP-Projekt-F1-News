@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 namespace F1_News.Models.DB.ArticleRep {
     public class RepositoryArticle : IRepositoryArticle {
 
-        private string connection = "Server=localhost; database=f1db; user=root; password=hallo123!";
+
+        private String connection = DB_Connect.connectionStr;
         private DbConnection conn;
         public async Task ConnectAsync() {
             if(this.conn == null) {
