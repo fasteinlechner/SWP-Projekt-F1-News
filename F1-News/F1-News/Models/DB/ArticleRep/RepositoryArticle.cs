@@ -64,7 +64,8 @@ namespace F1_News.Models.DB.ArticleRep {
         }
 
         public async Task<Article> GetArticleByIDAsync(int id) {
-            if(this.conn?.State == ConnectionState.Open) {
+            Article article = new Article();
+            if (this.conn?.State == ConnectionState.Open) {
                 DbCommand com = this.conn.CreateCommand();
                 com.CommandText = "select * from article where idarticle = @articleId";
 
@@ -74,19 +75,18 @@ namespace F1_News.Models.DB.ArticleRep {
                 paramId.Value = id;
 
                 com.Parameters.Add(paramId);
-                Article article = new Article();
+                
                 using (DbDataReader reader = await com.ExecuteReaderAsync()) {
-                    while (await reader.ReadAsync()) {
+                    if (reader.Read()) {
                         article.ArticleID = Convert.ToInt32(reader["idarticle"]);
                         article.Bezeichnung = Convert.ToString(reader["bezeichnung"]);
                         article.Beschreibung = Convert.ToString(reader["beschreibung"]);
                         article.Preis = Convert.ToDecimal(reader["preis"]);
                         article.Elemente = Convert.ToInt32(reader["elemente"]);
                     }
-                }
-                return article;
+                } 
             }
-            return null;
+            return article;
         }
 
         public bool Insert(Article article)

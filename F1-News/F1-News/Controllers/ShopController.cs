@@ -13,8 +13,6 @@ namespace F1_News.Controllers {
         public async Task<IActionResult> Index() {
             try {
                 List<Article> a;
-                
-
                 await rep.ConnectAsync();
                 List<Article> articles = await rep.GetAllArticlesAsync();
                 return View(articles);
@@ -30,8 +28,18 @@ namespace F1_News.Controllers {
         }
 
         [HttpGet]
-        public IActionResult ArticleDetail(Article a) {
-            return View(a);
+        public async Task<IActionResult> ArticleDetail(int id) {
+            try {
+                await rep.ConnectAsync();
+                Article article = await rep.GetArticleByIDAsync(id);
+                return View(article);
+            } catch {
+                systemMessage model = new("DB-CONTROL", "ERROR-404");
+                return base.View("systemMessage", model);
+            } finally {
+                await rep.DisconnectAsync();
+            }
+            
         }
     }
 }
