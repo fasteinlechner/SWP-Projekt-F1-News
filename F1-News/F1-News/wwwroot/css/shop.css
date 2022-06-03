@@ -13,7 +13,8 @@
     text-align: left;
     padding: 20px;
     text-align: center;
-    transition: all 0.2s ease-in
+    transition: all 0.2s ease-in;
+    margin: 1rem;
 }
 
     .article:hover {
@@ -34,8 +35,7 @@
 }
 
 #articlelink {
-    position: fixed;
-    float: left;
+    position: relative;
 }
 
     #articlelink:link {
@@ -45,3 +45,8 @@
 
     #articlelink:hover {
     }
+
+.row {
+    display: flex;
+
+}

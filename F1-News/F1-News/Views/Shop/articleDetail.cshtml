@@ -1,24 +1,25 @@
-﻿@model List<Article>
+﻿@model Article
 
 @{
     ViewData["Title"] = "articleDetail";
 }
 
+  
 
 <!DOCTYPE html>
-<link rel="stylesheet" href="/adetail.css" />
+<link rel="stylesheet" href="~/css/articleDetail.css">
 <html>
 <head>
 </head>
 <body>
     <div class="detail">
-        <a class="aBack" href="/Index.html"><img class="back" src="/back.png" width="23" height="23" /></a> <br> <br>
+        <a class="aBack" href="/shop/index"><img class="back" src="/img/back.png" width="23" height="23" /></a> <br> <br>
         <br><br>
         <img class="img" src="/McLaren.png" />
         <br> <br>
-        <div class="dverf"><p>noch Verfügbar:</p> <b>221 St.</b></div>
+        <div class="dverf"><p>noch Verfügbar:</p> <b>@Model.Elemente</b></div>
         <br>
-        <div class="dpreis"><b>55€</b></div>
+        <div class="dpreis"><b>@Model.Preis</b></div>
         <br>
         <div class="purchaseBtn">
             <a href="">
