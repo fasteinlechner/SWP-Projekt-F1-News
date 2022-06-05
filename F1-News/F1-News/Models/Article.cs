@@ -27,14 +27,16 @@ namespace F1_News.Models {
         }
         public string Bezeichnung { get; set; }
         public string Beschreibung { get; set; }
+        public string ImageLink { get; set; }
         public int Elemente { get; set; }
-        public Article() : this(0, "Article", "das ist ein Artikel", 0, 0) { }
-        public Article(int articleId, string bez, string bes, int preis , int elemente) {
+        public Article() : this(0, "Article", "das ist ein Artikel", 0, 0,"") { }
+        public Article(int articleId, string bez, string bes, int preis , int elemente, string image) {
             this.ArticleID = articleId;
             this.Bezeichnung= bez;
             this.Beschreibung = bes;
             this.Preis = preis;
             this.Elemente = elemente;
+            this.ImageLink = image;
         }
         
     }

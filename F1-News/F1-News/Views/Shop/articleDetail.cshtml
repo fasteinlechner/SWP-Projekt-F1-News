@@ -15,14 +15,14 @@
     <div class="detail">
         <a class="aBack" href="/shop/index"><img class="back" src="/img/back.png" width="23" height="23" /></a> <br> <br>
         <br><br>
-        <img class="img" src="/McLaren.png" />
+        <img class="img" src="@Model.ImageLink" width="150" height="150" />
         <br> <br>
         <div class="dverf"><p>noch Verfügbar:</p> <b>@Model.Elemente</b></div>
         <br>
         <div class="dpreis"><b>@Model.Preis</b></div>
         <br>
         <div class="purchaseBtn">
-            <a href="">
+            <a href="/shop/addtobasket/@Model.ArticleID">
                 <div id="wk" class="wkbutton"><b>Zum Warenkorb hinzufügen</b></div>      <!-- wk ... Warenkorb -->
             </a>
             <br>

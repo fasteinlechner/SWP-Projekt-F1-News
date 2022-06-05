@@ -14,10 +14,10 @@ namespace F1_News.Controllers {
         public const string L = "~/img/lock.png";
         public static string lockStr = L;
 
-        private readonly IMailService mailService;
-        public UserController(IMailService mailServ) {
-            mailService = mailServ;
-        }
+        //private readonly IMailService mailService;
+        /*public UserController(IMailService mailServ) {
+            //mailService = mailServ;
+        }*/
 
         
         private IRepositoryUser rep = new RepositoryUser();
@@ -47,12 +47,12 @@ namespace F1_News.Controllers {
                 try {
                     await rep.ConnectAsync();
                     if (await rep.InsertAsync(userDataFromForm)) {
-                        PersonalizedMail request = new();
+                        /*PersonalizedMail request = new();
                         request.ToEmail = userDataFromForm.Email;
                         request.Firstname = userDataFromForm.Firstname;
                         request.Username = userDataFromForm.Username;
 
-                        await mailService.SendWelcomeEmailAsync(request);
+                        await mailService.SendWelcomeEmailAsync(request);*/
                         List<String> list = new List<string>();
                         list.Add("/user/login");
                         list.Add("Zum LOGIN");
@@ -80,6 +80,8 @@ namespace F1_News.Controllers {
                await rep .ConnectAsync();
                if(await rep .LoginAsync(userDataFromForm.Username, userDataFromForm.Password)) {
                     HttpContext.Session.SetString("uname", userDataFromForm.Username);
+                    HttpContext.Session.SetInt32("uId", await rep.GetIDByUserPW(userDataFromForm.Username, userDataFromForm.Password));
+                    HttpContext.Session.SetInt32("bNr", 103);
                     SessionHelper.SetObjectAsJson(HttpContext.Session, "user", userDataFromForm);
                     if (userDataFromForm.Username.Equals("adminF1")) {
                         return RedirectToAction("AdminView");
@@ -115,6 +117,8 @@ namespace F1_News.Controllers {
 
         public IActionResult Logout() {
             HttpContext.Session.Remove("uname");
+            HttpContext.Session.Remove("uId");
+            HttpContext.Session.Remove("bNr");
             return View("systemMessage", new systemMessage("LOGOUT-Control","Erfolgreich ausgeloggt"));
         }
 

@@ -220,6 +220,32 @@ namespace F1_News.Models.DB.UserRep{
             return false;
         }
 
-       
+        public async Task<int> GetIDByUserPW(string username, string password) {
+            int id = -1;
+            if (this.conn?.State == ConnectionState.Open) {
+                DbCommand cmdLogin = this.conn.CreateCommand();
+                cmdLogin.CommandText = "select * from user where username = @username and password = sha2(@password, 512)";
+
+                DbParameter user = cmdLogin.CreateParameter();
+                user.ParameterName = "username";
+                user.DbType = DbType.String;
+                user.Value = username;
+
+                DbParameter passw = cmdLogin.CreateParameter();
+                passw.ParameterName = "password";
+                passw.DbType = DbType.String;
+                passw.Value = password;
+
+                cmdLogin.Parameters.Add(user);
+                cmdLogin.Parameters.Add(passw);
+
+                using (DbDataReader reader = await cmdLogin.ExecuteReaderAsync()) {
+                    if(await reader.ReadAsync()) {
+                        id = Convert.ToInt32(reader["user_id"]);
+                    }
+                }
+            }
+            return id;
+        }
     }
 }

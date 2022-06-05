@@ -13,6 +13,8 @@ namespace F1_News.Models.DB.UserRep {
         Task<bool> UpdateAsync(User newUser);
         Task<bool> DeleteAsync(int userId);
         Task<bool> LoginAsync(string username, string password);
+        Task<int> GetIDByUserPW(string username, string password);
+
 
     }
 }

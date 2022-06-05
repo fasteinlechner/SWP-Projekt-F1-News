@@ -56,7 +56,8 @@ namespace F1_News.Models.DB.ArticleRep {
                             Bezeichnung = Convert.ToString(reader["bezeichnung"]),
                             Beschreibung = Convert.ToString(reader["beschreibung"]),
                             Preis = Convert.ToDecimal(reader["preis"]),
-                            Elemente = Convert.ToInt32(reader["elemente"])
+                            Elemente = Convert.ToInt32(reader["elemente"]),
+                            ImageLink = Convert.ToString(reader["image"])
                         });
                     }
                 }
@@ -84,6 +85,8 @@ namespace F1_News.Models.DB.ArticleRep {
                         article.Beschreibung = Convert.ToString(reader["beschreibung"]);
                         article.Preis = Convert.ToDecimal(reader["preis"]);
                         article.Elemente = Convert.ToInt32(reader["elemente"]);
+                        article.ImageLink = Convert.ToString(reader["image"]);
+
                     }
                 } 
             }
